@@ -1,46 +1,44 @@
-
 # MindSight — Multimodal AI Mental Health Detection
 
-**Authors:** Bhoomika Baloorgi, Bhagyajyoti G  
-**Date:** March 2026
+**Authors:** Bhoomika Baloorgi, Bhagyajyoti G
+**Last Updated:** March 2026
 
-## Pipeline Status: ✅ WORKING END-TO-END
+## Pipeline Status: FULLY WORKING WITH AI REPORTS
 
-## What We Built
-A multimodal AI system that detects mental/emotional state from 4 inputs:
-- Facial expressions (webcam)
-- Voice tone (microphone)
-- Text sentiment (journal/chat input)
-- Smartphone behavioral patterns
+## What MindSight Does
+Detects a student's emotional state from 4 inputs simultaneously,
+then generates a personalized mental health report using AI.
 
 ## Model Accuracies
-| Modality | Architecture | Dataset | Accuracy |
-|---|---|---|---|
-| Facial | MobileNetV2 + Dense | Balanced FER (45,304 images) | 49.12% (Phase 1) |
-| Voice | YAMNet + Dense | TESS (2,800 audio files) | 96.96% |
-| Text | TF-IDF + Logistic Regression | GoEmotions (54,263 samples) | 63.68% |
-| Behavioral | Random Forest | ScreenTime vs Wellness (400 rows) | 91.25% |
-| **Fusion** | **Weighted Average** | **All 4 combined** | **✅ Working** |
+| Modality | Architecture | Accuracy |
+|---|---|---|
+| Facial | MobileNetV2 Phase 1+2+3 | 79.46% |
+| Voice | YAMNet + Dense | 96.96% |
+| Text | TF-IDF + Logistic Regression | 63.68% |
+| Behavioral | Random Forest | 91.25% |
+| Fusion | Weighted Average | Working |
+| AI Report | Groq LLaMA 3.3 70B | Working |
 
-## Fusion Weights (from MindLift paper)
-- Facial: 0.40
-- Voice: 0.30
-- Text: 0.20
-- Behavioral: 0.10
+## Sample Output
+Input: I am so stressed about my exams, I cant sleep
+Detected: SAD at 42.84% confidence
+Report: Personalized 4-section mental health report generated
 
-## Output
-7 emotions: `angry, disgust, fear, happy, neutral, sad, surprise`
+## What Teammates Need To Do Next
+1. BERT upgrade for text model (use Kaggle GPU)
+2. Flask backend API (wrap fusion + report into REST API)
+3. React frontend (chat UI + webcam + mic input)
+4. Real webcam and mic integration
 
-## Files in MindSight_Models (Google Drive)
-- `facial_model.keras` — 13.3 MB
-- `voice_model.keras` — 7.9 MB
-- `text_model.pkl` — 0.5 MB
-- `text_vectorizer.pkl` — 0.3 MB
-- `behavioral_model.pkl` — 0.9 MB
-- `pipeline_summary.json` — full summary
+## Models Saved In Google Drive: MindSight_Models folder
+- facial_model.keras   79.46%
+- voice_model.keras    96.96%
+- text_model.pkl       63.68%
+- behavioral_model.pkl 91.25%
 
-## Next Steps
-1. Upgrade text model: TF-IDF → BERT (target 88%+)
-2. Facial model Phase 2+3 fine-tuning (target 85%+)
-3. GPT-4 API for personalized mental health reports
-4. Flask backend + React frontend
+## How To Run
+1. Open MindSight_Fusion_Pipeline notebook in Colab
+2. Mount Drive and clone repo
+3. Install libraries: pip install tensorflow tensorflow_hub librosa scikit-learn groq
+4. Run all cells in order
+5. Full pipeline works end to end
