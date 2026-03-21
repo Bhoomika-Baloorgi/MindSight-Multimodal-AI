@@ -1,36 +1,39 @@
 {
-  "project": "MindSight \u2014 Multimodal Mental Health Detection",
+  "project": "MindSight — Multimodal Mental Health Detection",
   "authors": "Bhoomika Baloorgi, Bhagyajyoti G",
-  "date": "2026-03-19 20:15",
-  "pipeline_status": "WORKING END-TO-END \u2705",
+  "date": "2026-03-21",
+  "pipeline_status": "ML PIPELINE COMPLETE — App integration in progress",
   "models": {
     "facial": {
-      "architecture": "MobileNetV2 + Dense Head",
+      "architecture": "MobileNetV2 Phase 1+2+3 fine-tuned",
       "dataset": "Balanced FER (45,304 images, 7 classes)",
-      "accuracy": "49.12% (Phase 1 only)",
+      "accuracy": "79.46%",
       "file": "facial_model.keras",
-      "status": "\u2705 Saved to Drive"
+      "status": "Saved to Drive",
+      "upgrade_from": "49.12% (Phase 1 only)"
     },
     "voice": {
       "architecture": "YAMNet embeddings + Dense Network",
       "dataset": "TESS (2,800 audio files, 7 emotions)",
       "accuracy": "96.96%",
       "file": "voice_model.keras",
-      "status": "\u2705 Saved to Drive"
+      "status": "Saved to Drive"
     },
     "text": {
-      "architecture": "TF-IDF + Logistic Regression",
-      "dataset": "GoEmotions (54,263 samples, mapped to 7 emotions)",
-      "accuracy": "63.68%",
-      "file": "text_model.pkl + text_vectorizer.pkl",
-      "status": "\u2705 Saved to Drive"
+      "architecture": "BERT (bert-base-uncased) fine-tuned",
+      "dataset": "GoEmotions (43,410 samples, mapped to 4 unified classes)",
+      "accuracy": "74.30%",
+      "f1_macro": "61.20%",
+      "file": "text_model/",
+      "status": "Saved to Drive",
+      "upgrade_from": "TF-IDF + Logistic Regression (63.68%)"
     },
     "behavioral": {
       "architecture": "Random Forest Classifier",
       "dataset": "ScreenTime vs MentalWellness (400 samples)",
       "accuracy": "91.25%",
       "file": "behavioral_model.pkl",
-      "status": "\u2705 Saved to Drive"
+      "status": "Saved to Drive"
     }
   },
   "fusion": {
@@ -41,23 +44,25 @@
       "text": 0.2,
       "behavioral": 0.1
     },
-    "output": "7 emotions: angry, disgust, fear, happy, neutral, sad, surprise",
-    "test_result": "FEAR at 46.91% for stressed student simulation",
-    "status": "\u2705 Working"
+    "output": "4 unified states: calm, stressed, anxious, sad",
+    "continuum_mapping": {
+      "calm": "Flourishing",
+      "stressed": "Moderate",
+      "anxious": "Distressed",
+      "sad": "Languishing"
+    },
+    "status": "Working"
   },
-  "shared_labels": [
-    "angry",
-    "disgust",
-    "fear",
-    "happy",
-    "neutral",
-    "sad",
-    "surprise"
-  ],
+  "ai_report": {
+    "model": "Groq LLaMA 3.3 70B",
+    "sections": ["summary", "contributing_factors", "recommendations", "encouragement"],
+    "status": "Logic complete in notebook — deployment pending"
+},
+  "shared_labels": ["calm", "stressed", "anxious", "sad"],
   "next_steps": [
-    "Upgrade text model from TF-IDF to BERT (target: 88%+)",
-    "Run facial model Phase 2+3 fine-tuning (target: 85%+)",
-    "Add GPT-4 API for generating personalized mental health reports",
-    "Build Flask backend + React frontend"
-  ]
+    "Flask backend API — wrap fusion + report into REST endpoints",
+    "React frontend — chat UI with webcam and mic input",
+    "Real webcam and mic integration for live multimodal input",
+    "End-to-end app testing and deployment"
+]
 }
