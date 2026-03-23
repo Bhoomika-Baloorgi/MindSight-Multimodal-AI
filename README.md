@@ -1,6 +1,5 @@
-# MindSight — Multimodal AI Mental Health Detection
-
-**Authors:**  Bhagyajyoti G
+# MindSight — Generative AI-Powered Student Mental Health Detection and Insights
+**Authors:** Bhagyajyoti G, Bhavana P K, Bhoomika P B, Chandana S
 **Last Updated:** March 2026
 
 ## Pipeline Status: FULLY WORKING WITH BERT + AI REPORTS
@@ -8,9 +7,9 @@
 ## Model Accuracies
 | Modality | Architecture | Accuracy |
 |---|---|---|
-| Facial | MobileNetV2 Phase 1+2+3 | 79.46% |
+| Facial | MobileNetV2 Phase 1+2+3 | 84.60% |
 | Voice | YAMNet + Dense | 96.96% |
-| Text | BERT (bert-base-uncased) | 68.28% |
+| Text | BERT (bert-base-uncased) | 82.35% |
 | Behavioral | Random Forest | 91.25% |
 | Fusion | Weighted Average | Working |
 | AI Report | Groq LLaMA 3.3 70B | Working |
@@ -27,13 +26,13 @@ Report: Personalized 4-section mental health report generated
 3. Real webcam and mic integration for live multimodal input
 
 ## Models in Google Drive MindSight_Models folder
-- facial_model.keras        79.46%
+- facial_model.keras        84.60%
 - voice_model.keras         96.96%
-- bert_text_model/          68.28% (BERT)
+- bert_text_model/          82.35% (BERT)
 - behavioral_model.pkl      91.25%
 
 ## How To Run
-1. Open MindSight_Fusion_Pipeline notebook in Colab
+1. Open MindSight_Final_Pipeline notebook in Colab
 2. Mount Drive and clone repo
 3. pip install tensorflow tensorflow_hub librosa scikit-learn groq transformers torch
 4. Run all cells in order
