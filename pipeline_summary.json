@@ -1,13 +1,13 @@
 {
-  "project": "MindSight — Multimodal Mental Health Detection",
-  "authors": "Bhoomika Baloorgi, Bhagyajyoti G",
-  "date": "2026-03-21",
+  "project": "MindSight: Generative AI-Powered Student Mental Health Detection and Insights",
+  "authors": "Bhagyajyoti G, Bhavana P K, Bhoomika P B, Chandana S",
+  "date": "2026-03-23",
   "pipeline_status": "ML PIPELINE COMPLETE — App integration in progress",
   "models": {
     "facial": {
       "architecture": "MobileNetV2 Phase 1+2+3 fine-tuned",
       "dataset": "Balanced FER (45,304 images, 7 classes)",
-      "accuracy": "79.46%",
+      "accuracy": "84.60%",
       "file": "facial_model.keras",
       "status": "Saved to Drive",
       "upgrade_from": "49.12% (Phase 1 only)"
@@ -21,16 +21,15 @@
     },
     "text": {
       "architecture": "BERT (bert-base-uncased) fine-tuned",
-      "dataset": "GoEmotions (43,410 samples, mapped to 4 unified classes)",
-      "accuracy": "74.30%",
-      "f1_macro": "61.20%",
-      "file": "text_model/",
+      "dataset": "dair-ai/emotion + GoEmotions (54,263 samples, mapped to 7 unified classes)",
+      "accuracy": "82.35%",
+      "file": "bert_text_model_v3/",
       "status": "Saved to Drive",
       "upgrade_from": "TF-IDF + Logistic Regression (63.68%)"
     },
     "behavioral": {
       "architecture": "Random Forest Classifier",
-      "dataset": "ScreenTime vs MentalWellness (400 samples)",
+      "dataset": "ScreenTime vs MentalWellness + Digital Behavior + Mobile Usage (400+ samples)",
       "accuracy": "91.25%",
       "file": "behavioral_model.pkl",
       "status": "Saved to Drive"
@@ -44,7 +43,7 @@
       "text": 0.2,
       "behavioral": 0.1
     },
-    "output": "4 unified states: calm, stressed, anxious, sad",
+    "output": "7 unified emotion states: calm, stressed, anxious, sad, angry, happy, surprised",
     "continuum_mapping": {
       "calm": "Flourishing",
       "stressed": "Moderate",
@@ -54,15 +53,17 @@
     "status": "Working"
   },
   "ai_report": {
-    "model": "Groq LLaMA 3.3 70B",
-    "sections": ["summary", "contributing_factors", "recommendations", "encouragement"],
+    "model": "Groq LLaMA 3.3 70B Versatile",
+    "sections": ["what_we_detected", "what_this_means", "3_things_to_do_tonight", "encouraging_note"],
+    "max_tokens": 350,
+    "temperature": 0.7,
     "status": "Logic complete in notebook — deployment pending"
-},
-  "shared_labels": ["calm", "stressed", "anxious", "sad"],
+  },
+  "shared_labels": ["calm", "stressed", "anxious", "sad", "angry", "happy", "surprised"],
   "next_steps": [
     "Flask backend API — wrap fusion + report into REST endpoints",
     "React frontend — chat UI with webcam and mic input",
     "Real webcam and mic integration for live multimodal input",
     "End-to-end app testing and deployment"
-]
+  ]
 }
