@@ -1,0 +1,27 @@
+{
+  "emotion_7class": [
+    "angry",
+    "disgust",
+    "fear",
+    "happy",
+    "neutral",
+    "sad",
+    "surprise"
+  ],
+  "state_3class": [
+    "negative",
+    "neutral",
+    "positive"
+  ],
+  "emotion_to_state": {
+    "angry": "negative",
+    "disgust": "negative",
+    "fear": "negative",
+    "sad": "negative",
+    "neutral": "neutral",
+    "happy": "positive",
+    "surprise": "positive"
+  },
+  "embedding_dim": 1280,
+  "img_size": 96
+}
