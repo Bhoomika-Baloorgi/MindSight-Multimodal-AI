@@ -1,18 +1,18 @@
 # MindSight — Multimodal AI Mental Health Analysis
-Last updated: 2026-08-25 08:44:46 by Bhagyajyoti-123
+Last updated: 2026-08-26 01:17:47 by Bhagyajyoti-123
 
-## Models Used
-| Model     | Architecture         | Input           | Output           |
-|-----------|----------------------|-----------------|------------------|
-| Face      | MobileNetV2 dual-out | 96x96 RGB image | 7 emotions+3 states |
-| Text      | BERT fine-tuned      | Text string     | 7 emotions       |
-| Behaviour | Random Forest        | 12 features     | Stress level     |
-| Audio     | WavLM large (WIP)    | Audio waveform  | 7 emotions       |
+## Models
+| Model     | Architecture         | Input           | Output                |
+|-----------|----------------------|-----------------|-----------------------|
+| Face      | MobileNetV2 dual-out | 96x96 RGB image | 7 emotions + 3 states |
+| Text      | BERT fine-tuned      | Text string     | 7 emotions            |
+| Behaviour | Random Forest        | 12 features     | Stress level          |
+| Audio     | WavLM large (WIP)    | Audio waveform  | 7 emotions            |
 
 ## Datasets
 - Face     : FER2013 + RAF-DB + personal images
-- Text     : Custom 75k text dataset
-- Behaviour: Screen time + mental wellness dataset
+- Text     : Custom 75k dataset
+- Behaviour: Screen time + mental wellness data
 - Audio    : TESS + RAVDESS + CREMA-D
 
 ## Fusion Weights
@@ -23,33 +23,20 @@ Last updated: 2026-08-25 08:44:46 by Bhagyajyoti-123
 | Behaviour | 0.25    | 0.10       |
 | Audio     | TBA     | 0.30       |
 
-## Emotion Classes
+## Emotions
 angry, disgust, fear, happy, neutral, sad, surprise
 
-## Emotional States
+## States
 - Positive : happy, surprise
 - Neutral  : neutral
 - Negative : angry, disgust, fear, sad
-
-## Inputs
-1. Face image (JPG/PNG)
-2. Text — how you feel
-3. Behaviour — 12 lifestyle questions
-4. Audio — WAV/MP3 (coming soon)
-
-## Outputs
-- Predicted emotion + confidence
-- Emotional state
-- Probability chart per modality
-- AI mental health report via Groq LLaMA3
-- Results saved as JSON to Drive
 
 ## How to Run
 1. Open notebooks/MindSight_Analysis.ipynb in Colab
 2. Runtime → T4 GPU
 3. Run cells 0-7 then Cell 8
-4. Follow prompts for each input
-5. Get mental health insight report
+4. Upload face image, type feelings, answer questionnaire
+5. Get AI mental health report via Groq LLaMA3
 
 ## Future Plans
 - WavLM audio integration
